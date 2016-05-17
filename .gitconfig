@@ -1,0 +1,11 @@
+[user]
+        name = Nikolay
+        email =
+[core]
+        editor = vim
+[alias]
+        co = checkout
+        st = status
+        lg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+        br = branch
+        ls = ls-files
