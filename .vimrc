@@ -31,7 +31,6 @@ set textwidth=120
 set tabstop=8
 set hlsearch
 set autoindent
-"set mouse=a                             " Enable mouse
 set nu                                  " no | nonu
 set noautoread                          " tells vim not to automatically reload changed files
 set ic                                  " Case insensitive search
@@ -41,7 +40,9 @@ set lbr                                 " Wrap text instead of being on one line
 set splitbelow                          " natural split
 set splitright                          " natural vsplit
 
-colorscheme pablo                      " koehler | pablo | morning
+xnoremap p pgvy                         " paste multiple times after yank
+
+colorscheme pablo                       " koehler | pablo | morning
 syntax on
 autocmd FileType make set noexpandtab
 filetype plugin indent on               " Indent automatically depending on filetype
