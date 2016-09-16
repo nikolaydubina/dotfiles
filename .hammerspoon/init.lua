@@ -10,7 +10,8 @@ local centeredWindowRatios = {
 }
 
 local appSettings = {
-    ["Finder"] = { size = "abs", w = 1100, h = 750 }
+    ["Finder"] = { size = "abs", w = 1100, h = 750 },
+    ["Preview"] = { size = "abs", w = 800, h = 1000 }
 }
 
 -- Setup
@@ -129,3 +130,15 @@ end)
 
 -- All set
 hs.alert.show("Hammerspoon!")
+
+
+-- Show focused window size
+hs.hotkey.bind(mash.utils, "/", function()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local fr = win:frame()
+    w = fr.w
+    h = fr.h
+
+    hs.alert.show(w .. "x" .. h)
+end)
