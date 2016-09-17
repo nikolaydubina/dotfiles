@@ -30,15 +30,14 @@ local function adjust(x, y, w, h)
     local win = hs.window.focusedWindow()
     if not win then return end
 
-    local f = win:frame()
     local fr = win:screen():frame()
 
-    f.x = fr.w * x
-    f.y = fr.h * y
-    f.w = fr.w * w 
-    f.h = fr.h * h
-
-    win:setFrame(f)
+    win:setFrame(hs.geometry({ 
+        fr.w * x, 
+        fr.h * y, 
+        fr.w * w, 
+        fr.h * h 
+    }))
   end
 end
 
@@ -47,15 +46,14 @@ local function adjustCenter(w, h)
     local win = hs.window.focusedWindow()
     if not win then return end
 
-    local f = win:frame()
     local fr = win:screen():frame()
 
-    f.x = fr.w * 0.5 * (1 - w)
-    f.y = fr.h * 0.5 * (1 - h)
-    f.w = fr.w * w
-    f.h = fr.h * h
-
-    win:setFrame(f)
+    win:setFrame(hs.geometry({
+        fr.w * 0.5 * (1 - w),
+        fr.h * 0.5 * (1 - h),
+        fr.w * w,
+        fr.h * h
+    }))
   end
 end
 
@@ -64,28 +62,18 @@ local function adjustCenterAbs(w, h)
     local win = hs.window.focusedWindow()
     if not win then return end
 
-    local f = win:frame()
     local fr = win:screen():frame()
 
-    f.x = 0.5 * (fr.w - w)
-    f.y = 0.5 * (fr.h - h)
-    f.w = w
-    f.h = h
-
-    win:setFrame(f)
+    win:setFrame(hs.geometry({
+        0.5 * (fr.w - w),
+        0.5 * (fr.h - h),
+        w,
+        h
+    }))
   end
 end
 
-hs.hotkey.bind(mash.split, "up", adjust(0, 0, 1, 0.5))
-hs.hotkey.bind(mash.split, "right", adjust(0.5, 0, 0.5, 1))
-hs.hotkey.bind(mash.split, "down", adjust(0, 0.5, 1, 0.5))
-hs.hotkey.bind(mash.split, "left", adjust(0, 0, 0.5, 1))
-
--- full
-hs.hotkey.bind(mash.split, ",", adjustCenter(1, 1))
-
--- center small
-hs.hotkey.bind(mash.split, ".", function()
+function adjustCenterSmall()
   local win = hs.window.focusedWindow()
   if not win then return end
 
@@ -104,13 +92,23 @@ hs.hotkey.bind(mash.split, ".", function()
 
   local size = win:screen():frame().w >= 2560 and "large" or "small"
   adjustCenter(centeredWindowRatios[size].w, centeredWindowRatios[size].h)()
-end)
+end
+
+hs.hotkey.bind(mash.split, "up", adjust(0, 0, 1, 0.5))
+hs.hotkey.bind(mash.split, "right", adjust(0.5, 0, 0.5, 1))
+hs.hotkey.bind(mash.split, "down", adjust(0, 0.5, 1, 0.5))
+hs.hotkey.bind(mash.split, "left", adjust(0, 0, 0.5, 1))
+hs.hotkey.bind(mash.split, ",", function() hs.window.focusedWindow():maximize() end)
+hs.hotkey.bind(mash.split, ".", adjustCenterSmall)
 
 -- Wifi
 function ssidChangedCallback()
     local ssid = hs.wifi.currentNetwork()
     if ssid then
-      hs.alert.show("Network connected: " .. ssid)
+        hs.notify.new({
+            title='Network connected: ',
+            informativeText=ssid
+        }):send()
     end
 end
 
@@ -128,10 +126,6 @@ hs.hotkey.bind(mash.utils, "e", function()
     hs.hints.windowHints()
 end)
 
--- All set
-hs.alert.show("Hammerspoon!")
-
-
 -- Show focused window size
 hs.hotkey.bind(mash.utils, "/", function()
     local win = hs.window.focusedWindow()
@@ -142,3 +136,25 @@ hs.hotkey.bind(mash.utils, "/", function()
 
     hs.alert.show(w .. "x" .. h)
 end)
+
+-- Keep track of wakeups since last unlock
+wokeup = {}
+hs.caffeinate.watcher.new(function(eventType)
+    if eventType == hs.caffeinate.watcher.screensDidWake 
+        or eventType == hs.caffeinate.watcher.systemDidWake
+    then
+        table.insert(wokeup, os.date("%H:%M:%S"))
+    elseif eventType == hs.caffeinate.watcher.screensDidUnlock then
+        hs.notify.new({
+            title="Woke up at:",
+            informativeText=table.concat(wokeup, '\n')
+        }):send()
+        wokeup = {}
+    end
+end):start()
+
+-- All set
+hs.notify.new({
+    title='Hammerspoon',
+    informativeText='Config loaded'
+}):send()

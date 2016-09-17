@@ -57,6 +57,11 @@ function history_freq {
     column -c3 -s " " -t | sort -nr | nl |  head -n$1
 }
 
+# set MAC address to random
+function randmac {
+    sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's%\(..\)%\1:%g; s%.$%%')
+}
+
 # colorize man pages
 man() {
     env \
@@ -79,6 +84,15 @@ man() {
 # grep -rnw . <name>
 # xargs -I {} <command> {}
 # grep B | fpp -c 'vim -O'
+# lsof <path-to-file>
+# lsof +D <dir>
+# lsof -u <user>
+# lsof -iTCP -sTCP:LISTEN | -iUDP -sUDP:Idle
+# nmap -v -sS -A -T4 <target>
+# nmap -sP X.X.X.0/24
+# nmap -iflist
+# nmap -f // fragmented packets
+# nmap -F // fast. 100 ports
 
 # torch
 . /Users/nikolay/torch/install/bin/torch-activate
