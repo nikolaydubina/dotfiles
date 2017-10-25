@@ -1,11 +1,12 @@
 [user]
         name = Nikolay
-        email =
 [core]
         editor = vim
 [alias]
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
         co = checkout
-        st = status
-        lg = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+        st = status -sb
         br = branch
-        ls = ls-files
+        l = ls-files
+[color]
+        ui = auto

@@ -5,38 +5,30 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
+# shell
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
 HISTFILESIZE=2000
+HISTSIZE=1000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+shopt -s histappend
 shopt -s checkwinsize
-
-# unfuck
-eval "$(thefuck --alias fk)"
-
-# colors
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-alias pip='pip3.5'
-alias l='ls -alFh'
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+export PS1='$(whoami)@$(hostname):$(pwd)$ '
 
-# shortcuts
+# alias
+alias fp='fpp'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias l='ls -alFh'
+alias pip='pip3.6'
+alias pip_update='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 
-# naive encrypt. still better than plain text
+eval "$(thefuck --alias fk)"
+
+# naive encrypt
 # $1 : input dir
 # $2 : output filename
 function encrypt {
@@ -47,14 +39,6 @@ function encrypt {
 # $1 : input filename  
 function decrypt {
     openssl enc -d -aes256 -in $1 | tar --extract --file - --gzip
-}
-
-# $1 : # of commands
-function history_freq {
-    history | \
-    awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | \
-    grep -v "./" | \
-    column -c3 -s " " -t | sort -nr | nl |  head -n$1
 }
 
 # set MAC address to random
@@ -74,26 +58,6 @@ man() {
     man "$@"
 }
 
-# small how-to
-# -----------------
-# ssh-copy-id -i <.pub> <user@host>
-# ssh-create -t rsa
-# tar -czf <in> <out>
-# tar -x <in>
-# find <path> -name <exp>
-# grep -rnw . <name>
-# xargs -I {} <command> {}
-# grep B | fpp -c 'vim -O'
-# lsof <path-to-file>
-# lsof +D <dir>
-# lsof -u <user>
-# lsof -iTCP -sTCP:LISTEN | -iUDP -sUDP:Idle
-# nmap -v -sS -A -T4 <target>
-# nmap -sP X.X.X.0/24
-# nmap -iflist
-# nmap -f // fragmented packets
-# nmap -F // fast. 100 ports
-
 # torch
 . /Users/nikolay/torch/install/bin/torch-activate
 
@@ -103,3 +67,9 @@ export PATH=$PATH:$GOPATH/bin
 
 # redis
 export REDISCONFIG=/usr/local/etc/redis.conf
+
+# Added by GraphLab Create Launcher v3.0.1
+export PATH="/Users/nikolay/Workplace/anaconda/bin:$PATH"
+
+# homebrew
+export HOMEBREW_NO_ANALYTICS=1
