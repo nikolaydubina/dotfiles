@@ -1,3 +1,4 @@
+set backspace=2
 " Vundle -----------------------------------
 set nocompatible                        " be iMproved, required
 filetype off                            " required
@@ -28,7 +29,7 @@ let g:airline_theme='murmur'
 set shiftwidth=4 softtabstop=4
 set expandtab
 set textwidth=120
-set tabstop=8
+set tabstop=4
 set hlsearch
 set autoindent
 set nu                                  " no | nonu

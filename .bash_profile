@@ -15,7 +15,8 @@ shopt -s checkwinsize
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
-export PS1='$(whoami)@$(hostname):$(pwd)$ '
+export PS1='$(pwd)$ '
+export HOMEBREW_NO_ANALYTICS=1
 
 # alias
 alias fp='fpp'
@@ -23,7 +24,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias l='ls -alFh'
-alias pip='pip3.6'
+alias datef='date "+%d-%m-%Y"'
 alias pip_update='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 
 eval "$(thefuck --alias fk)"
@@ -58,18 +59,3 @@ man() {
     man "$@"
 }
 
-# torch
-. /Users/nikolay/torch/install/bin/torch-activate
-
-# go
-export GOPATH=/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
-
-# redis
-export REDISCONFIG=/usr/local/etc/redis.conf
-
-# Added by GraphLab Create Launcher v3.0.1
-export PATH="/Users/nikolay/Workplace/anaconda/bin:$PATH"
-
-# homebrew
-export HOMEBREW_NO_ANALYTICS=1
