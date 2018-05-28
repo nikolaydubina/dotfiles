@@ -1,29 +1,7 @@
 set backspace=2
-" Vundle -----------------------------------
-set nocompatible                        " be iMproved, required
-filetype off                            " required
-set rtp+=~/.vim/bundle/Vundle.vim/      " set the runtime path to include Vundle
-
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'fatih/vim-go'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'google/vim-searchindex'
-call vundle#end()
-" -------------------------------------------
-
-" airline -----------------------------------
 set t_Co=256
 set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline-Powerline.otf
 set laststatus=2
-let g:airline_powerline_fonts=1
-"let g:airline#extensions#tabline#enabled=1
-"let g:airline_theme='laederon'
-"let g:airline_theme='sol'
-"let g:airline_theme='understated'
-let g:airline_theme='murmur'
 " -------------------------------------------
 
 set shiftwidth=4 softtabstop=4
