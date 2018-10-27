@@ -1,6 +1,6 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+if [ -r ~/.bashrc ]; then
+   source ~/.bashrc
+fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -56,4 +56,4 @@ alias egrep='egrep --color=auto'
 alias l='ls -alFh'
 alias datef='date "+%d-%m-%Y"'
 alias pip_update='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
-alias vid='vi $(date +%F).md
+alias vid='vi $(date +%F).md'
