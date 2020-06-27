@@ -83,6 +83,18 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 sudo defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM HH:mm"
 sudo defaults write com.apple.menuextra.clock IsAnalog -bool false
 
+# photos
+defaults write com.apple.Photos IPXDefaultPlacesPublishPlaceInfo -bool false
+
+# vlc
+defaults delete org.videolan.vlc recentlyPlayedMedia
+defaults delete org.videolan.vlc recentlyPlayedMediaList
+defaults delete org.videolan.vlc.LSSharedFileList RecentDocuments
+defaults write org.videolan.vlc NSRecentDocumentsLimit -int 0
+defaults write org.videolan.vlc SUHasLaunchedBefore -bool true
+defaults write org.videolan.vlc SUSendProfileInfo -bool false
+defaults write org.videolan.vlc.LSSharedFileList RecentDocuments -dict-add "MaxAmount" -int 0
+
 # cleanup mail sqlite
 # sqlite3 ~/Library/Mail/V7/MailData/Envelope\ Index vacuum
 
