@@ -3,41 +3,41 @@ set -x
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on 
 sudo fdesetup enable
 
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+defaults -currentHost write com.apple.screensaver askForPassword -int 1
+defaults -currentHost write com.apple.screensaver askForPasswordDelay -int 0
+defaults -currentHost write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write com.apple.screencapture type -string "png"
-defaults write com.apple.screencapture disable-shadow -bool true
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+defaults -currentHost write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults -currentHost write com.apple.screencapture type -string "png"
+defaults -currentHost write com.apple.screencapture disable-shadow -bool true
+defaults -currentHost write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 # disable dns responder
 sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 sudo defaults write /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist ProgramArguments -array-add "-NoMulticastAdvertisements"
 
 # speedup ui
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
-defaults write -g AppleFontSmoothing -int 0
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-defaults write -g QLPanelAnimationDuration -float 0
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-defaults write com.apple.finder DisableAllAnimations -bool true
-defaults write com.apple.dock launchanim -bool false
-defaults write com.apple.dock expose-animation-duration -float 0.1
-defaults write com.apple.Dock autohide-delay -float 0
-defaults write com.apple.mail DisableReplyAnimations -bool true
-defaults write com.apple.mail DisableSendAnimations -bool true
-defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
-defaults write NSGlobalDomain KeyRepeat -int 0
-defaults write com.apple.safari WebKitDNSPrefetchingEnabled -boolean false
+defaults -currentHost write com.apple.mail DisableInlineAttachmentViewing -bool yes
+defaults -currentHost write -g AppleFontSmoothing -int 0
+defaults -currentHost write -g CGFontRenderingFontSmoothingDisabled -bool false
+defaults -currentHost write -g QLPanelAnimationDuration -float 0
+defaults -currentHost write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+defaults -currentHost write NSGlobalDomain NSWindowResizeTime -float 0.001
+defaults -currentHost write com.apple.finder DisableAllAnimations -bool true
+defaults -currentHost write com.apple.dock launchanim -bool false
+defaults -currentHost write com.apple.dock expose-animation-duration -float 0.1
+defaults -currentHost write com.apple.Dock autohide-delay -float 0
+defaults -currentHost write com.apple.mail DisableReplyAnimations -bool true
+defaults -currentHost write com.apple.mail DisableSendAnimations -bool true
+defaults -currentHost write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
+defaults -currentHost write NSGlobalDomain KeyRepeat -int 0
+defaults -currentHost write com.apple.safari WebKitDNSPrefetchingEnabled -boolean false
 
 # vscode ui
-defaults write com.microsoft.VSCode CGFontRenderingFontSmoothingDisabled -bool false && \
-defaults write com.microsoft.VSCode.helper CGFontRenderingFontSmoothingDisabled -bool false && \
-defaults write com.microsoft.VSCode.helper.EH CGFontRenderingFontSmoothingDisabled -bool false && \
-defaults write com.microsoft.VSCode.helper.NP CGFontRenderingFontSmoothingDisabled -bool false
+defaults -currentHost write com.microsoft.VSCode CGFontRenderingFontSmoothingDisabled -bool false && \
+defaults -currentHost write com.microsoft.VSCode.helper CGFontRenderingFontSmoothingDisabled -bool false && \
+defaults -currentHost write com.microsoft.VSCode.helper.EH CGFontRenderingFontSmoothingDisabled -bool false && \
+defaults -currentHost write com.microsoft.VSCode.helper.NP CGFontRenderingFontSmoothingDisabled -bool false
 
 # more ui
 defaults write com.apple.dock no-bouncing -bool true
