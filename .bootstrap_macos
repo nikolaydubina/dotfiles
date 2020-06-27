@@ -3,14 +3,14 @@ set -x
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on 
 sudo fdesetup enable
 
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 defaults write com.apple.ImageCapture disableHotPlug -bool true
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write com.apple.screencapture type -string "png"
-defaults write com.apple.screencapture disable-shadow -bool true
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+defaults write com.apple.screencapture disable-shadow -bool true
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # safari
 defaults write com.apple.Safari AutoFillCreditCardData -bool false
@@ -24,16 +24,16 @@ defaults write com.apple.Safari ShowSidebarInTopSites -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+defaults write com.apple.Safari WebKitDefaultTextEncodingName -string 'utf-8'
 defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
 defaults write com.apple.Safari WebKitJavaEnabled -bool false
 defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
 defaults write com.apple.Safari WebKitPluginsEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DefaultTextEncodingName -string 'utf-8'
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false
 defaults write com.apple.safari WebKitDNSPrefetchingEnabled -boolean false
-defaults write com.apple.Safari WebKitDefaultTextEncodingName -string 'utf-8'
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DefaultTextEncodingName -string 'utf-8'
 
 # icloud
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
@@ -57,15 +57,15 @@ sudo defaults write /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist 
 defaults write -g AppleFontSmoothing -int 0
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
 defaults write -g QLPanelAnimationDuration -float 0
+defaults write NSGlobalDomain KeyRepeat -int 0
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-defaults write com.apple.finder DisableAllAnimations -bool true
-defaults write com.apple.dock launchanim -bool false
-defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.Dock autohide-delay -float 0
+defaults write com.apple.dock expose-animation-duration -float 0.1
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.finder DisableAllAnimations -bool true
 defaults write com.apple.mail DisableReplyAnimations -bool true
 defaults write com.apple.mail DisableSendAnimations -bool true
-defaults write NSGlobalDomain KeyRepeat -int 0
 
 # vscode ui
 defaults write com.microsoft.VSCode CGFontRenderingFontSmoothingDisabled -bool false && \
