@@ -68,9 +68,9 @@ defaults write com.apple.mail DisableReplyAnimations -bool true
 defaults write com.apple.mail DisableSendAnimations -bool true
 
 # vscode ui
-defaults write com.microsoft.VSCode CGFontRenderingFontSmoothingDisabled -bool false && \
-defaults write com.microsoft.VSCode.helper CGFontRenderingFontSmoothingDisabled -bool false && \
-defaults write com.microsoft.VSCode.helper.EH CGFontRenderingFontSmoothingDisabled -bool false && \
+defaults write com.microsoft.VSCode CGFontRenderingFontSmoothingDisabled -bool false
+defaults write com.microsoft.VSCode.helper CGFontRenderingFontSmoothingDisabled -bool false
+defaults write com.microsoft.VSCode.helper.EH CGFontRenderingFontSmoothingDisabled -bool false
 defaults write com.microsoft.VSCode.helper.NP CGFontRenderingFontSmoothingDisabled -bool false
 
 # ui
