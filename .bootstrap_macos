@@ -1,1 +1,8 @@
-brew install git bat fpp fd
+set -x
+
+brew install git bat fpp fd ag
+
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
