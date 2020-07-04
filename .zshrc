@@ -2,7 +2,7 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
-bindkey -v
+#bindkey -v
 
 # history
 HISTSIZE=5000
@@ -36,3 +36,5 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias l='ls -alFh'
+
+export PATH=$PATH:'/Applications/Julia-1.4.app/Contents/Resources/julia/bin'
