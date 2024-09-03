@@ -37,4 +37,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias l='ls -alFh'
 
-export PATH=$PATH:'/Applications/Julia-1.4.app/Contents/Resources/julia/bin'
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:/Users/nikolaydubina/.kubescape/bin 
