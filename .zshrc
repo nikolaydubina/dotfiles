@@ -33,14 +33,15 @@ man() {
 
 alias fp='fpp'
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias l='ls -alFh'
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 
 export GOPATH=$(go env GOPATH)
+export GOPRIVATE=github.com/ndx-technologies
+
+export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/Users/nikolaydubina/.kubescape/bin 
 export PATH=$PATH:/Users/nikolaydubina/Workspace/dotfiles
