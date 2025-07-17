@@ -1,0 +1,4 @@
+#!/bin/bash
+branch=$(echo "$*" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/_/g' | sed 's/__\+/_/g' | sed 's/^_//;s/_$//')
+git checkout -b "$branch"
+

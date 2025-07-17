@@ -43,3 +43,5 @@ export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export GOPATH=$(go env GOPATH)
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/Users/nikolaydubina/.kubescape/bin 
+export PATH=$PATH:/Users/nikolaydubina/Workspace/dotfiles
+
